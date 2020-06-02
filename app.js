@@ -12,6 +12,9 @@ serialPort.pipe(parser);
 
 parser.on('data', temperature => {
 
+    temperature = temperature.split(' ').map(Number);
+    temperature = String.fromCharCode(temperature[0], temperature[1]);
+    
     sendToAlgorandBlockchain(temperature);
 
 });
