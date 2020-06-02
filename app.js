@@ -1,6 +1,5 @@
 const SerialPort = require('serialport');
 const Readline = require('@serialport/parser-readline');
-const aesjs = require('aes-js');
 const algosdk = require('algosdk');
 
 require('dotenv').config();
@@ -11,19 +10,9 @@ const serialPort = new SerialPort(mcu, { baudRate: JSON.parse(process.env.SERIAL
 const parser = new Readline();
 serialPort.pipe(parser);
 
-const key = JSON.parse(process.env.AES_KEY);
-const iv = JSON.parse(process.env.IV);
+parser.on('data', temperature => {
 
-parser.on('data', encryptedBytes => {
-
-    var encryptedBytes = encryptedBytes.split(' ').map(Number);
-    encryptedBytes = encryptedBytes.slice(0, -1);
-
-    var aesCbc = new aesjs.ModeOfOperation.cbc(key, iv);
-    var decryptedBytes = aesCbc.decrypt(encryptedBytes);
-    var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes);
-
-    sendToAlgorandBlockchain(decryptedText);
+    sendToAlgorandBlockchain(temperature);
 
 });
 
