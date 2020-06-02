@@ -27,4 +27,4 @@ MN=""
 node app.js
 ```
 
-![Device Alert](IoT-Device-algo.png)
+![Device Alert](IoT-Device.png)
