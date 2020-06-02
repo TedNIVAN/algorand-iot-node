@@ -9,7 +9,6 @@
   "author": "Ted NIVAN",
   "license": "ISC",
   "dependencies": {
-    "aes-js": "^3.1.2",
     "algosdk": "^1.5.0",
     "dotenv": "^8.2.0",
     "serialport": "^8.0.7"
